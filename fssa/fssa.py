@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
 r"""
 Low-level routines for finite-size scaling analysis
 
@@ -33,10 +30,6 @@ References
 
 """
 
-# Python 2/3 compatibility
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 import warnings
 from builtins import *
 from collections import namedtuple
@@ -44,8 +37,6 @@ from collections import namedtuple
 import numpy as np
 import numpy.ma as ma
 import scipy.optimize
-
-from .optimize import _minimize_neldermead
 
 
 class ScaledData(namedtuple('ScaledData', ['x', 'y', 'dy'])):
@@ -316,7 +307,7 @@ def _select_mask(j, j_primes):
     ret = np.zeros_like(j_primes, dtype=bool)
     my_iprimes = np.invert(np.isnan(j_primes[:, j])).nonzero()[0]
     my_jprimes = j_primes[my_iprimes, j]
-    my_jprimes = my_jprimes.astype(np.int)
+    my_jprimes = my_jprimes.astype(int)
     ret[my_iprimes, my_jprimes] = True
     ret[my_iprimes, my_jprimes + 1] = True
 
@@ -611,10 +602,10 @@ def autoscale(l, rho, a, da, rho_c0, nu0, zeta0, x_bounds=None, **kwargs):
     ret = scipy.optimize.minimize(
         goal_function,
         [rho_c0, nu0, zeta0],
-        method=_minimize_neldermead,
+        method='Nelder-Mead',
         options={
-            'xtol': 1e-2,
-            'ftol': 1e-2,
+            'xatol': 1e-2,
+            'fatol': 1e-2,
         }
     )
 
