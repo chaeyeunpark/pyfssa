@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=7"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fssa"
+dynamic = ["version"]
+description = "Scientific Python package for finite-size scaling analysis at phase transitions"
+authors = [{name = "Andreas Sorge", email = "pyfssa@asorge.de"}]
+license = {text = "ISC"}
+readme = "README.rst"
+requires-python = ">=3.8"
+dependencies = [
+    "numpy",
+    "scipy>=0.14.0",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: ISC License (ISCL)",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+[project.urls]
+Homepage = "http://pyfssa.readthedocs.org"
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "node-and-date"
+
+[tool.setuptools.packages.find]
+exclude = ["tests*", "test*"]

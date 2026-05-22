@@ -229,7 +229,7 @@ def _wls_linearfit_predict(x, w, wx, wy, wxx, wxy, select):
 
 
 def _jprimes(x, i, x_bounds=None):
-    """
+    r"""
     Helper function to return the j' indices for the master curve fit
 
     This function is a helper function for :py:func:`quality`. It is not

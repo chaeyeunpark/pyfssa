@@ -78,9 +78,10 @@ References
 
 __ https://github.com/andsor/pyfssa/issues/2
 """
-from __future__ import absolute_import
-
-import pkg_resources
+from importlib.metadata import version, PackageNotFoundError
 from .fssa import scaledata, quality, autoscale
 
-__version__ = pkg_resources.get_distribution(__name__).version
+try:
+    __version__ = version(__name__)
+except PackageNotFoundError:
+    __version__ = "unknown"
